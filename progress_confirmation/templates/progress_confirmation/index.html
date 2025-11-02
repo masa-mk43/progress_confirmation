@@ -1,0 +1,125 @@
+{% extends 'progress_confirmation/base.html' %}
+{% load static %}
+{% block content %}
+<!-- 🔍 検索フォーム＋管理画面リンク（レスポンシブ対応） -->
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-3">
+  <!-- フィルタフォーム -->
+  <form method="get" class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+    <input
+      type="text"
+      name="q"
+      placeholder="受注番号・製品名検索"
+      value="{{ q }}"
+      class="px-3 py-2 border border-gray-300 rounded-lg w-full sm:w-64 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+    <select
+      name="status"
+      class="px-3 py-2 border border-gray-300 rounded-lg w-full sm:w-40 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    >
+      <option value="">状態（全て）</option>
+      <option value="未着手" {% if request.GET.status == "未着手" %}selected{% endif %}>未着手</option>
+      <option value="進行中" {% if request.GET.status == "進行中" %}selected{% endif %}>進行中</option>
+      <option value="完了" {% if request.GET.status == "完了" %}selected{% endif %}>完了</option>
+    </select>
+    <button
+      class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition w-full sm:w-auto"
+    >
+      絞り込み
+    </button>
+  </form>
+</div>
+
+
+<div class="max-w-6xl mx-auto mt-10 px-4">
+  <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">受注一覧</h1>
+
+  <!-- ✅ PC・タブレット用：テーブル表示 -->
+  <div class="hidden sm:block bg-white rounded-2xl shadow-md overflow-x-auto">
+    <table class="min-w-full text-sm text-gray-700">
+      <thead class="bg-gray-100 text-gray-800">
+        <tr>
+          <th class="px-4 py-3 text-left">受注番号</th>
+          <th class="px-4 py-3 text-left">製品名</th>
+          <th class="px-4 py-3 text-left">納期</th>
+          <th class="px-4 py-3 text-center">進捗</th>
+          <th class="px-4 py-3 text-center">ステータス</th>
+          <th class="px-4 py-3 text-center">操作</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        {% for o in orders %}
+        <tr class="hover:bg-gray-50 transition">
+          <td class="px-4 py-3 font-medium">{{ o.order_no }}</td>
+          <td class="px-4 py-3">{{ o.product_name }}</td>
+          <td class="px-4 py-3">{{ o.due_date|date:"Y-m-d" }}</td>
+          <td class="px-4 py-3 text-center">
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+              <div class="bg-blue-500 h-2.5 rounded-full" style="width: {{ o.progress|default:0 }}%"></div>
+            </div>
+            <p class="text-xs text-gray-500 mt-1">{{ o.progress|floatformat:1 }}%</p>
+          </td>
+          <td class="px-4 py-3 text-center">
+            <span class="
+              px-2 py-1 rounded-full text-xs font-semibold
+              {% if o.status == '完了' %}
+                bg-green-100 text-green-700
+              {% elif o.status == '進行中' %}
+                bg-blue-100 text-blue-700
+              {% else %}
+                bg-yellow-100 text-yellow-700
+              {% endif %}
+            ">
+              {{ o.status }}
+            </span>
+          </td>
+          <td class="px-4 py-3 text-center">
+            <a href="{% url 'order_detail' o.id %}" class="text-blue-600 hover:underline">詳細</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7" class="px-4 py-6 text-center text-gray-500">受注データがありません。</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ✅ スマホ用：カード表示 -->
+  <div class="sm:hidden space-y-4">
+    {% for o in orders %}
+    <div class="bg-white rounded-2xl shadow p-4 border border-gray-100">
+      <div class="flex justify-between items-center mb-2">
+        <h2 class="font-semibold text-lg text-gray-800">{{ o.order_no }}</h2>
+        <span class="
+          text-xs font-semibold px-2 py-1 rounded-full
+          {% if o.status == '完了' %}
+            bg-green-100 text-green-700
+          {% elif o.status == '進行中' %}
+            bg-blue-100 text-blue-700
+          {% else %}
+            bg-yellow-100 text-yellow-700
+          {% endif %}
+        ">
+          {{ o.status }}
+        </span>
+      </div>
+      <p class="text-sm text-gray-700 mb-1"><strong>顧客：</strong>{{ o.customer_name }}</p>
+      <p class="text-sm text-gray-700 mb-1"><strong>製品：</strong>{{ o.product_name }}</p>
+      <p class="text-sm text-gray-700 mb-3"><strong>納期：</strong>{{ o.due_date|date:"Y-m-d" }}</p>
+      <div class="mb-3">
+        <div class="w-full bg-gray-200 rounded-full h-2.5">
+          <div class="bg-blue-500 h-2.5 rounded-full" style="width: {{ o.progress|default:0 }}%"></div>
+        </div>
+        <p class="text-xs text-gray-500 mt-1">{{ o.progress|floatformat:1 }}%</p>
+      </div>
+      <a href="{% url 'order_detail' o.id %}" class="block w-full text-center bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition">
+        詳細を見る
+      </a>
+    </div>
+    {% empty %}
+    <p class="text-center text-gray-500">受注データがありません。</p>
+    {% endfor %}
+  </div>
+
+{% endblock %}

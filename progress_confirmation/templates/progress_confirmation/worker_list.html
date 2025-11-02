@@ -1,0 +1,41 @@
+{% extends 'progress_confirmation/base.html' %}
+{% block content %}
+<div class="container mx-auto px-4 py-6">
+    <div class="flex justify-between items-center mb-4">
+        <h1 class="text-2xl font-bold">作業者一覧</h1>
+        <a href="{% url 'worker_add' %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">新規登録</a>
+    </div>
+
+    <div class="overflow-x-auto bg-white shadow-md rounded-2xl">
+        <table class="min-w-full text-left text-sm">
+        <thead class="bg-gray-100 text-gray-700">
+            <tr>
+            <th class="px-4 py-2">社員ID</th>
+            <th class="px-4 py-2">名前</th>
+            <th class="px-4 py-2">所属部署</th>
+            <th class="px-4 py-2">入社日</th>
+            <th class="px-4 py-2">在籍中</th>
+            <th class="px-4 py-2 text-right">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for w in workers %}
+            <tr class="border-t hover:bg-gray-50">
+            <td class="px-4 py-2">{{ w.employee_id }}</td>
+            <td class="px-4 py-2">{{ w.name }}</td>
+            <td class="px-4 py-2">{{ w.department }}</td>
+            <td class="px-4 py-2">{{ w.hire_date }}</td>
+            <td class="px-4 py-2">{{ w.is_active|yesno:"◯,×" }}</td>
+            <td class="px-4 py-2 text-right">
+                <a href="{% url 'worker_edit' w.pk %}" class="text-blue-600 hover:underline">編集</a> |
+                <a href="{% url 'worker_delete' w.pk %}" class="text-red-600 hover:underline">削除</a>
+            </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6" class="text-center py-4 text-gray-500">登録された作業者はいません。</td></tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

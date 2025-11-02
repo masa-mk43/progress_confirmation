@@ -1,0 +1,114 @@
+{% extends 'progress_confirmation/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+    <div class="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
+        <h1 class="text-2xl font-semibold text-center text-gray-800 mb-6">👷 作業者情報の編集</h1>
+
+        <!-- メッセージ表示 -->
+        {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+            <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">
+                {{ message }}
+            </div>
+            {% else %}
+            <div class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">
+                {{ message }}
+            </div>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        {% if form.errors %}
+        <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+            <ul>
+            {% for field, errors in form.errors.items %}
+                <li><strong>{{ field }}:</strong> {{ errors|striptags }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <form method="POST" class="space-y-4">
+        {% csrf_token %}
+
+        <!-- 社員ID -->
+        <div>
+            <label for="employee_id" class="block text-gray-600 mb-1 font-medium">社員ID</label>
+            <input
+            type="text"
+            id="employee_id"
+            name="employee_id"
+            value="{{ form.employee_id.value|default_if_none:'' }}"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            required
+            />
+        </div>
+
+        <!-- 氏名 -->
+        <div>
+            <label for="name" class="block text-gray-600 mb-1 font-medium">氏名</label>
+            <input
+            type="text"
+            id="name"
+            name="name"
+            value="{{ form.name.value|default_if_none:'' }}"
+            placeholder="例：山田 太郎"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            required
+            />
+        </div>
+
+        <!-- 入社日 -->
+        <div>
+            <label for="hire_date" class="block text-gray-600 mb-1 font-medium">入社日</label>
+            <input
+            type="date"
+            id="hire_date"
+            name="hire_date"
+            value="{{ form.hire_date.value|date:'Y-m-d' }}"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            />
+        </div>
+
+        <!-- 所属部署 -->
+        <div>
+            <label for="department" class="block text-gray-600 mb-1 font-medium">所属部署</label>
+            <input
+            type="text"
+            id="department"
+            name="department"
+            value="{{ form.department.value|default_if_none:'' }}"
+            placeholder="例：製造部"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            />
+        </div>
+
+        <!-- 有効 / 無効 -->
+        <div class="flex items-center">
+            <input
+            type="checkbox"
+            id="is_active"
+            name="is_active"
+            {% if form.is_active.value %}checked{% endif %}
+            class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+            />
+            <label for="is_active" class="ml-2 text-gray-700 text-sm">有効</label>
+        </div>
+
+        <!-- ボタン -->
+        <div class="pt-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <a href="{% url 'worker_list' %}" class="text-gray-600 hover:underline">← 作業者一覧に戻る</a>
+            <button
+            type="submit"
+            class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition duration-200"
+            >
+            保存する
+            </button>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

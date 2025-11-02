@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ProgressBoard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{% static 'progress_confirmation/styles.css' %}">
+</head>
+<body class="bg-gray-100">
+  <header class="bg-white shadow">
+    <div class="max-w-6xl mx-auto py-4 px-4">
+      <h1 class="text-2xl font-bold">ProgressBoard</h1>
+      <p class="text-sm text-gray-600">金属加工業向け 簡易進捗管理</p>
+    </div>
+  </header>
+  <nav class="bg-gray-800 text-white px-4 py-3">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <!-- 左側：ロゴ -->
+    <div class="flex items-center space-x-4">
+      <a href="{% url 'index' %}" class="text-lg font-bold hover:text-blue-300">生産管理システム</a>
+    </div>
+
+    <!-- モバイルメニュー開閉ボタン -->
+    <div class="sm:hidden">
+      <button id="menu-btn" class="focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- PCナビメニュー -->
+    <div class="hidden sm:flex items-center space-x-4">
+      <a href="{% url 'index' %}" class="hover:underline">受注一覧</a>
+      <a href="{% url 'dashboard' %}" class="hover:underline">ダッシュボード</a>
+      <a href="{% url 'order_add' %}" class="hover:underline">受注登録</a>
+
+      {% if user.is_authenticated %}
+        <span class="text-sm text-gray-200">{{ user.name }}（{{ user.employee_id }}）</span>
+        {% if user.is_superuser %}
+          <a href="{% url 'worker_list' %}" class="hover:underline">👥 作業者管理</a>
+          <a href="/admin/" class="hover:underline">管理画面</a>
+        {% endif %}
+        <a href="{% url 'logout' %}" class="hover:underline">ログアウト</a>
+      {% else %}
+        <a href="{% url 'login' %}" class="hover:underline">ログイン</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- モバイルメニュー -->
+  <div id="mobile-menu" class="hidden sm:hidden mt-3 space-y-2 px-2">
+    <a href="{% url 'index' %}" class="block hover:bg-gray-700 px-3 py-2 rounded">受注一覧</a>
+    <a href="{% url 'dashboard' %}" class="block hover:bg-gray-700 px-3 py-2 rounded">ダッシュボード</a>
+    <a href="{% url 'order_add' %}" class="block hover:bg-gray-700 px-3 py-2 rounded">受注登録</a>
+
+    {% if user.is_authenticated %}
+      <p class="text-sm text-gray-300 px-3">{{ user.name }}（{{ user.employee_id }}）</p>
+      {% if user.is_superuser %}
+        <a href="{% url 'worker_list' %}" class="block hover:bg-gray-700 px-3 py-2 rounded">👥 作業者管理</a>
+      {% endif %}
+      <a href="{% url 'logout' %}" class="block hover:bg-gray-700 px-3 py-2 rounded">ログアウト</a>
+    {% else %}
+      <a href="{% url 'login' %}" class="block hover:bg-gray-700 px-3 py-2 rounded">ログイン</a>
+    {% endif %}
+  </div>
+</nav>
+  <main class="max-w-6xl mx-auto p-4">
+    {% if messages %}
+      <div class="mb-4">
+        {% for m in messages %}
+          <div class="p-2 rounded 
+          {% if m.tags == 'success' %}
+              bg-green-100 text-green-800
+          {% elif m.tags == 'error' %}
+              bg-red-100 text-red-800
+          {% else %}
+              bg-yellow-100 text-yellow-800
+          {% endif %}">{{ m }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="max-w-6xl mx-auto p-4 text-xs text-gray-500">
+    © ProgressBoard
+  </footer>
+
+  <!-- JS：モバイルメニュー開閉 -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

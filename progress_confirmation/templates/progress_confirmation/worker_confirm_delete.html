@@ -1,0 +1,15 @@
+{% extends 'progress_confirmation/base.html' %}
+{% block content %}
+<div class="container mx-auto px-4 py-6 max-w-md text-center">
+    <h1 class="text-xl font-bold mb-4">削除確認</h1>
+    <p class="mb-6">「{{ worker.name }}（{{ worker.employee_id }}）」を削除しますか？</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="flex justify-center gap-3">
+            <a href="{% url 'worker_list' %}" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">キャンセル</a>
+            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">削除</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
