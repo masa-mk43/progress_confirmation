@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ProgressBoard</title>
+  <title>ProgressTrack</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="{% static 'progress_confirmation/styles.css' %}">
@@ -12,16 +12,15 @@
 <body class="bg-gray-100">
   <header class="bg-white shadow">
     <div class="max-w-6xl mx-auto py-4 px-4">
-      <h1 class="text-2xl font-bold">ProgressBoard</h1>
-      <p class="text-sm text-gray-600">金属加工業向け 簡易進捗管理</p>
+      <h1 class="text-2xl font-bold text-blue-900">ProgressTrack</h1>
     </div>
   </header>
   <nav class="bg-gray-800 text-white px-4 py-3">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
     <!-- 左側：ロゴ -->
-    <div class="flex items-center space-x-4">
+    {% comment %} <div class="flex items-center space-x-4">
       <a href="{% url 'index' %}" class="text-lg font-bold hover:text-blue-300">生産管理システム</a>
-    </div>
+    </div> {% endcomment %}
 
     <!-- モバイルメニュー開閉ボタン -->
     <div class="sm:hidden">
