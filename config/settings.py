@@ -28,9 +28,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = False
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['www.progresstrack.jp', 'progresstrack.jp']
+=======
+ALLOWED_HOSTS = ['masa1981.pythonanywhere.com']
+>>>>>>> a4857bf9a4e0d523921df10d1c352d6e7efce1c3
 
 
 # Application definition
