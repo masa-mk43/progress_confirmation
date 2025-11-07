@@ -2,119 +2,119 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ProgressTrack | 製造現場の進捗を見える化</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProgressTrack | 製造現場の進捗を見える化</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; }
+    </style>
 </head>
 <body class="bg-gradient-to-b from-gray-50 via-white to-gray-100 text-gray-800">
 
-  <!-- ヘッダー -->
-  <header class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold text-blue-900">ProgressTrack</h1>
-      <a href="/app/" class="text-sm font-medium text-blue-700 hover:text-blue-900 transition">
-        ログイン
-      </a>
-    </div>
-  </header>
+    <!-- ヘッダー -->
+    <header class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-blue-900">ProgressTrack</h1>
+            <a href="/app/" class="text-sm font-medium text-blue-700 hover:text-blue-900 transition">
+                ログイン
+            </a>
+        </div>
+    </header>
 
-  <!-- ヒーロー -->
-  <section class="pt-32 pb-24 text-center relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-tr from-blue-50 to-white"></div>
-    <div class="relative z-10">
-      <h2 data-aos="fade-up" data-aos-duration="800" class="text-5xl font-extrabold mb-6 text-gray-900 tracking-tight">
-        現場の進捗を、直感的に見える化。
-      </h2>
-      <p data-aos="fade-up" data-aos-delay="200" class="text-lg text-gray-600 mb-10 leading-relaxed">
-        作業工数の削減、製作ミスの防止、進捗の即時共有。<br>
-        製造現場の“今”をひと目で把握できるクラウドツールです。
-      </p>
-      <a data-aos="fade-up" data-aos-delay="400"
-         href="/app/"
-         class="inline-block bg-blue-600 text-white px-10 py-4 rounded-xl font-semibold shadow-lg hover:bg-blue-700 transition">
+    <!-- ヒーロー -->
+    <section class="pt-32 pb-24 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-tr from-blue-50 to-white"></div>
+        <div class="relative z-10">
+        <h2 data-aos="fade-up" data-aos-duration="800" class="text-5xl font-extrabold mb-6 text-gray-900 tracking-tight">
+            現場の進捗を、直感的に見える化。
+        </h2>
+        <p data-aos="fade-up" data-aos-delay="200" class="text-lg text-gray-600 mb-10 leading-relaxed">
+            作業工数の削減、製作ミスの防止、進捗の即時共有。<br>
+            製造現場の“今”をひと目で把握できるクラウドツールです。
+        </p>
+        <a data-aos="fade-up" data-aos-delay="400"
+            href="/app/"
+            class="inline-block bg-blue-600 text-white px-10 py-4 rounded-xl font-semibold shadow-lg hover:bg-blue-700 transition">
+            サンプルはこちら
+        </a>
+
+        <!-- アプリ画面イメージ -->
+        <div data-aos="fade-up" data-aos-delay="600" class="mt-16 flex justify-center">
+            <img src="top_img.png"
+                alt="アプリ画面プレビュー"
+                class="rounded-2xl shadow-2xl border border-gray-200 w-11/12 md:w-3/4 lg:w-2/3">
+        </div>
+        </div>
+    </section>
+
+    <!-- 特徴セクション -->
+    <section class="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-3 gap-10">
+        <div data-aos="fade-up" data-aos-delay="0"
+            class="p-8 bg-white/70 backdrop-blur-md border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition transform hover:-translate-y-1">
+        <div class="mb-4">
+            <div class="w-12 h-12 bg-blue-100 text-blue-700 flex items-center justify-center rounded-xl font-bold text-lg">①</div>
+        </div>
+        <h3 class="text-xl font-semibold mb-3 text-gray-900">作業工数を削減</h3>
+        <p class="text-gray-600 leading-relaxed">
+            入力フォームをシンプルに設計。<br>
+            現場での記録作業がぐっとスムーズになります。
+        </p>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="150"
+            class="p-8 bg-white/70 backdrop-blur-md border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition transform hover:-translate-y-1">
+        <div class="mb-4">
+            <div class="w-12 h-12 bg-blue-100 text-blue-700 flex items-center justify-center rounded-xl font-bold text-lg">②</div>
+        </div>
+        <h3 class="text-xl font-semibold mb-3 text-gray-900">製作のもれを防止</h3>
+        <p class="text-gray-600 leading-relaxed">
+            進捗ステータスをリアルタイムで確認。<br>
+            作業のもれや遅れを未然に防ぎます。
+        </p>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="300"
+            class="p-8 bg-white/70 backdrop-blur-md border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition transform hover:-translate-y-1">
+        <div class="mb-4">
+            <div class="w-12 h-12 bg-blue-100 text-blue-700 flex items-center justify-center rounded-xl font-bold text-lg">③</div>
+        </div>
+        <h3 class="text-xl font-semibold mb-3 text-gray-900">現場を即時把握</h3>
+        <p class="text-gray-600 leading-relaxed">
+            どこからでもアクセス可能。<br>
+            チーム全体の進行を瞬時に共有できます。
+        </p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center py-24 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+        <h2 data-aos="fade-up" class="text-3xl font-bold mb-6">業務の見える化で、現場が変わる。</h2>
+        <p data-aos="fade-up" data-aos-delay="150" class="text-lg mb-10 text-blue-100">
+        ProgressTrackで、今日からスマートな進捗管理を。
+        </p>
+        <a data-aos="fade-up" data-aos-delay="300"
+        href="/app/"
+        class="bg-white text-blue-900 px-10 py-4 rounded-xl font-semibold hover:bg-blue-50 transition">
         サンプルはこちら
-      </a>
+        </a>
+    </section>
 
-      <!-- アプリ画面イメージ -->
-      <div data-aos="fade-up" data-aos-delay="600" class="mt-16 flex justify-center">
-        <img src="top_img.png"
-             alt="アプリ画面プレビュー"
-             class="rounded-2xl shadow-2xl border border-gray-200 w-11/12 md:w-3/4 lg:w-2/3">
-      </div>
-    </div>
-  </section>
+    <!-- フッター -->
+    <footer class="py-8 text-center text-sm text-gray-500 bg-gray-100 border-t border-gray-200">
+        &copy; 2025 ProgressTrack. All rights reserved.
+    </footer>
 
-  <!-- 特徴セクション -->
-  <section class="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-3 gap-10">
-    <div data-aos="fade-up" data-aos-delay="0"
-         class="p-8 bg-white/70 backdrop-blur-md border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition transform hover:-translate-y-1">
-      <div class="mb-4">
-        <div class="w-12 h-12 bg-blue-100 text-blue-700 flex items-center justify-center rounded-xl font-bold text-lg">①</div>
-      </div>
-      <h3 class="text-xl font-semibold mb-3 text-gray-900">作業工数を削減</h3>
-      <p class="text-gray-600 leading-relaxed">
-        入力フォームをシンプルに設計。<br>
-        現場での記録作業がぐっとスムーズになります。
-      </p>
-    </div>
-
-    <div data-aos="fade-up" data-aos-delay="150"
-         class="p-8 bg-white/70 backdrop-blur-md border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition transform hover:-translate-y-1">
-      <div class="mb-4">
-        <div class="w-12 h-12 bg-blue-100 text-blue-700 flex items-center justify-center rounded-xl font-bold text-lg">②</div>
-      </div>
-      <h3 class="text-xl font-semibold mb-3 text-gray-900">製作のもれを防止</h3>
-      <p class="text-gray-600 leading-relaxed">
-        進捗ステータスをリアルタイムで確認。<br>
-        作業のもれや遅れを未然に防ぎます。
-      </p>
-    </div>
-
-    <div data-aos="fade-up" data-aos-delay="300"
-         class="p-8 bg-white/70 backdrop-blur-md border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition transform hover:-translate-y-1">
-      <div class="mb-4">
-        <div class="w-12 h-12 bg-blue-100 text-blue-700 flex items-center justify-center rounded-xl font-bold text-lg">③</div>
-      </div>
-      <h3 class="text-xl font-semibold mb-3 text-gray-900">現場を即時把握</h3>
-      <p class="text-gray-600 leading-relaxed">
-        どこからでもアクセス可能。<br>
-        チーム全体の進行を瞬時に共有できます。
-      </p>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="text-center py-24 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-    <h2 data-aos="fade-up" class="text-3xl font-bold mb-6">業務の見える化で、現場が変わる。</h2>
-    <p data-aos="fade-up" data-aos-delay="150" class="text-lg mb-10 text-blue-100">
-      ProgressTrackで、今日からスマートな進捗管理を。
-    </p>
-    <a data-aos="fade-up" data-aos-delay="300"
-       href="/app/"
-       class="bg-white text-blue-900 px-10 py-4 rounded-xl font-semibold hover:bg-blue-50 transition">
-      サンプルはこちら
-    </a>
-  </section>
-
-  <!-- フッター -->
-  <footer class="py-8 text-center text-sm text-gray-500 bg-gray-100 border-t border-gray-200">
-    &copy; 2025 ProgressTrack. All rights reserved.
-  </footer>
-
-  <!-- AOS JS -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      once: true,
-      offset: 120,
-      duration: 800,
-      easing: 'ease-out-cubic'
-    });
-  </script>
-</body>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+        once: true,
+        offset: 120,
+        duration: 800,
+        easing: 'ease-out-cubic'
+        });
+    </script>
+    </body>
 </html>
